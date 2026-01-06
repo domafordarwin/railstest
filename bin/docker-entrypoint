@@ -7,7 +7,7 @@ echo "RAILS_ENV: ${RAILS_ENV}"
 echo "DATABASE_URL: ${DATABASE_URL:0:30}..." # Only show first 30 chars for security
 
 # If running the rails server then create or migrate existing database
-if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
+if [[ "$*" == *"server"* ]]; then
   echo "=== Running db:prepare ==="
   ./bin/rails db:prepare || {
     echo "ERROR: db:prepare failed with exit code $?"
