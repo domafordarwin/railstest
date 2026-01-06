@@ -6,21 +6,19 @@ echo "PORT: ${PORT}"
 echo "RAILS_ENV: ${RAILS_ENV}"
 echo "DATABASE_URL: ${DATABASE_URL:0:30}..." # Only show first 30 chars for security
 
-# If running the rails server then create or migrate existing database
-if [[ "$*" == *"server"* ]]; then
-  echo "=== Running db:prepare ==="
-  ./bin/rails db:prepare || {
-    echo "ERROR: db:prepare failed with exit code $?"
-    exit 1
-  }
-  echo "=== db:prepare completed successfully ==="
+# Always run db:prepare to ensure database is ready
+echo "=== Running db:prepare ==="
+./bin/rails db:prepare || {
+  echo "ERROR: db:prepare failed with exit code $?"
+  exit 1
+}
+echo "=== db:prepare completed successfully ==="
 
-  echo "=== Running db:seed ==="
-  ./bin/rails db:seed || {
-    echo "WARNING: db:seed failed with exit code $?"
-  }
-  echo "=== db:seed completed ==="
-fi
+echo "=== Running db:seed ==="
+./bin/rails db:seed || {
+  echo "WARNING: db:seed failed with exit code $?"
+}
+echo "=== db:seed completed ==="
 
 echo "=== Executing: ${@} ==="
 exec "${@}"
