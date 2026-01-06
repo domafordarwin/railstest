@@ -1,0 +1,28 @@
+<div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+  <h1 style="color: #0066cc; font-size: 48px;">Hello Railway! 🚀</h1>
+  <p style="font-size: 24px; color: #333;">Welcome to your first Rails app deployed on Railway</p>
+
+  <div style="margin-top: 30px; padding: 20px; background: #f0f8ff; border-radius: 10px;">
+    <h2 style="color: #0066cc;">Database Connection Test</h2>
+    <% if @messages.any? %>
+      <p style="color: green; font-weight: bold;">✅ Database is connected!</p>
+      <p>Found <%= @messages.count %> message(s) in database</p>
+      <ul style="list-style: none; padding: 0;">
+        <% @messages.each do |message| %>
+          <li style="padding: 10px; margin: 5px 0; background: white; border-radius: 5px;">
+            <%= message.content %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p style="color: orange;">Database is connected but empty</p>
+      <p>Run <code>rails db:seed</code> to add sample data</p>
+    <% end %>
+  </div>
+
+  <div style="margin-top: 30px; font-size: 14px; color: #666;">
+    <p>Environment: <%= Rails.env %></p>
+    <p>Ruby version: <%= RUBY_VERSION %></p>
+    <p>Rails version: <%= Rails.version %></p>
+  </div>
+</div>
