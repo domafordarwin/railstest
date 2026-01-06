@@ -56,7 +56,7 @@ RUN chmod +x bin/* && \
     sed -i 's/ruby\.exe$/ruby/' bin/*
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+RUN DATABASE_URL=postgres://localhost/dummy_db SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile --trace
 
 
 

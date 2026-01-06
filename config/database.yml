@@ -87,16 +87,16 @@ test:
 production:
   primary:
     <<: *default
-    url: <%= ENV.fetch('DATABASE_URL') %>
+    url: <%= ENV.fetch('DATABASE_URL') { "postgres://localhost/dummy_db" } %>
   cache:
     <<: *default
-    url: <%= ENV.fetch('DATABASE_URL') %>
+    url: <%= ENV.fetch('DATABASE_URL') { "postgres://localhost/dummy_db" } %>
     migrations_paths: db/cache_migrate
   queue:
     <<: *default
-    url: <%= ENV.fetch('DATABASE_URL') %>
+    url: <%= ENV.fetch('DATABASE_URL') { "postgres://localhost/dummy_db" } %>
     migrations_paths: db/queue_migrate
   cable:
     <<: *default
-    url: <%= ENV.fetch('DATABASE_URL') %>
+    url: <%= ENV.fetch('DATABASE_URL') { "postgres://localhost/dummy_db" } %>
     migrations_paths: db/cable_migrate
